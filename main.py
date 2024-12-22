@@ -10,16 +10,15 @@ app = FastAPI()
 # Add CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # You can specify the domains allowed to make requests, e.g., ["http://localhost:3000"]
+    allow_origins=["*"], 
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
-)
+    allow_methods=["*"],  
+    allow_headers=["*"], 
 
 UPLOAD_FOLDER = "./uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Serve static files (uploaded images)
+
 app.mount("/uploads", StaticFiles(directory=UPLOAD_FOLDER), name="uploads")
 
 @app.post("/upload/")
